@@ -137,7 +137,11 @@ int SoftapController::setSoftap(int argc, char *argv[]) {
     }
 
     asprintf(&wbuf, "interface=%s\ndriver=nl80211\nctrl_interface="
+#ifdef HAVE_LEGACY_HOSTAPD
+            "/data/misc/wifi/hostapd\nssid=%s\nchannel=%d\n"
+#else
             "/data/misc/wifi/hostapd\nssid=%s\nchannel=%d\nieee80211n=1\n"
+#endif
             "hw_mode=g\nignore_broadcast_ssid=%d\n",
             argv[2], argv[3], channel, hidden);
 
