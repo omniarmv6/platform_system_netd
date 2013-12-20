@@ -42,6 +42,10 @@ LOCAL_SHARED_LIBRARIES := libstlport libsysutils liblog libcutils libnetutils \
                           libcrypto libhardware_legacy libmdnssd libdl \
                           liblogwrap
 
+ifeq ($(BOARD_HAVE_LEGACY_HOSTAPD),true)
+  LOCAL_CFLAGS += -DHAVE_LEGACY_HOSTAPD
+endif
+
 include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
